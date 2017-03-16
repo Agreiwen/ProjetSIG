@@ -14,7 +14,9 @@ public:
 
 	// Autres méthodes
 	void afficher() const;
-	void bloque();
+	void verrouille();
+	bool aPourVoisin(Point p);
+	int nbVoisin();
 	void ajouterVoisin(Point p);
 	void afficherVoisins();
 	bool equals(Point p);

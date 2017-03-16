@@ -1,22 +1,29 @@
 ﻿  main.cpp
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(79): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(80): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(81): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(139): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(142): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(157): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(158): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(161): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(162): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(165): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(166): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(208): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(82): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(83): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(141): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(144): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(159): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(160): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(163): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(164): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(167): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(168): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(210): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(221): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(244): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(258): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(51): warning C4715: 'lectureSommets' : les chemins de contrôle ne retournent pas tous une valeur
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(96): warning C4715: 'lectureTriangles' : les chemins de contrôle ne retournent pas tous une valeur
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(205): warning C4715: 'lectureVerrouille' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(212): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(223): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(246): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(254): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(271): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(285): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(294): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(349): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(350): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(365): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(366): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(53): warning C4715: 'lectureSommets' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(98): warning C4715: 'lectureTriangles' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(207): warning C4715: 'lectureVerrouille' : les chemins de contrôle ne retournent pas tous une valeur
   ProjetSIG.vcxproj -> C:\Users\aurel\Documents\Visual Studio 2015\Projects\ProjetSIG\Debug\ProjetSIG.exe
   ProjetSIG.vcxproj -> C:\Users\aurel\Documents\Visual Studio 2015\Projects\ProjetSIG\Debug\ProjetSIG.pdb (Full PDB)
