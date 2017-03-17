@@ -18,10 +18,15 @@ c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cp
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(271): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(285): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(294): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(348): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(349): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(350): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(364): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(365): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(366): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(437): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(455): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(473): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(485): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(522): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(53): warning C4715: 'lectureSommets' : les chemins de contrôle ne retournent pas tous une valeur
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(98): warning C4715: 'lectureTriangles' : les chemins de contrôle ne retournent pas tous une valeur
 c:\users\aurel\documents\visual studio 2015\projects\projetsig\projetsig\main.cpp(207): warning C4715: 'lectureVerrouille' : les chemins de contrôle ne retournent pas tous une valeur

@@ -303,8 +303,8 @@ vector<Point> lissage(vector<Point> &vectPoints) {
 	return vectRes;
 }
 
-void remplissageMatrice(vector<Point> vectPoints, Matrice &A, Matrice &X) {
-	cout << "Remplissage des matrices A et X... ";
+Matrice remplissageMatriceUnique(vector<Point> vectPoints) {
+	cout << "Remplissage de la matrices A... ";
 	int nbPointLibre = 0;
 	int nbPoints = vectPoints.size();
 	while (vectPoints[nbPointLibre].lock == false) {
@@ -313,27 +313,26 @@ void remplissageMatrice(vector<Point> vectPoints, Matrice &A, Matrice &X) {
 	int nbPointVerrouille = nbPoints - nbPointLibre;
 	//cout << "nbPointLibre : " << nbPointLibre << endl;
 	//cout << "nbPointVerrouille : " << nbPointVerrouille << endl;
-	A = Matrice(nbPoints, nbPoints);
-	X = Matrice(nbPoints, 1);
+	Matrice res = Matrice(nbPoints, nbPoints);
 	for (int l = 0; l < nbPoints; l++) {
 		for (int c = 0; c < nbPoints; c++) {
 			if (l == c) {
-				A(l, c) = -1;
+				res(l, c) = -1;
 			}
 			else if (vectPoints[l].aPourVoisin(vectPoints[c])) {
 				double rapport = 1.0 / vectPoints[l].nbVoisin();
-				A(l, c) = rapport;
+				res(l, c) = rapport;
 			}
 			else {
-				A(l, c) = 0;
+				res(l, c) = 0;
 			}
 		}
-		X(l, 0) = vectPoints[l].x;
 	}
 	cout << "Succes" << endl;
+	return res;
 }
 
-void divisionMatrice(vector<Point> vectPoints, Matrice &A, Matrice &Af, Matrice &Al, Matrice &X, Matrice &Xf, Matrice &Xl) {
+void divisionMatrice(vector<Point> vectPoints, Matrice &A, Matrice &Af, Matrice &Al) {
 	int limiteFreeLock = 0;
 	int nbPoint = vectPoints.size();
 	while (vectPoints[limiteFreeLock].lock == false) {
@@ -343,18 +342,18 @@ void divisionMatrice(vector<Point> vectPoints, Matrice &A, Matrice &Af, Matrice 
 	// Division de X en deux : Xf et Xl
 	Af = Matrice(nbPoint, limiteFreeLock);
 	Al = Matrice(nbPoint, nbPoint - limiteFreeLock);
-	Xf = Matrice(limiteFreeLock, 1);
-	Xl = Matrice(nbPoint - limiteFreeLock, 1);
+	//Xf = Matrice(limiteFreeLock, 1);
+	//Xl = Matrice(nbPoint - limiteFreeLock, 1);
 	//cout << limiteFreeLock << endl;
 	for (int c = 0; c < A.nb_colones(); c++) {
 		for (int l = 0; l < A.nb_lignes(); l++) {
 			if (c < limiteFreeLock) {
 				Af(l, c) = A(l, c);
-				Xf(c, 0) = X(c, 0);
+				//Xf(c, 0) = X(c, 0);
 			}
 			else {
 				Al(l, c - limiteFreeLock) = A(l, c);
-				Xl(c - limiteFreeLock, 0) = X(c, 0);
+				//Xl(c - limiteFreeLock, 0) = X(c, 0);
 			}
 		}
 	}
@@ -364,8 +363,8 @@ void divisionMatrice(vector<Point> vectPoints, Matrice &A, Matrice &Af, Matrice 
 void affichageMatrice(Matrice &m) {
 	for (int l = 0; l < m.nb_lignes(); l++) {
 		for (int c = 0; c < m.nb_colones(); c++) {
-			//cout << setprecision(3) << m(l, c) << "\t";
-			cout << m(l, c) << ",";
+			cout << setprecision(3) << m(l, c) << "\t";
+			//cout << m(l, c) << ",";
 		}
 		cout << endl;
 	}
@@ -390,6 +389,7 @@ Matrice preparationGauss(Matrice &matrice, Matrice &vecteurConnu) {
 }
 
 void gaussJordan(Matrice &A) {
+
 	int n = A.nb_lignes();
 	int m = A.nb_colones();
 	int r = -1; // r est l'indice de ligne du dernier pivot trouve
@@ -427,14 +427,113 @@ void gaussJordan(Matrice &A) {
 	}
 }
 
+void remplissageX(vector<Point> vectPoints, Matrice &Xf, Matrice &Xl) {
+	int limiteFreeLock = 0;
+	int nbPoint = vectPoints.size();
+	while (vectPoints[limiteFreeLock].lock == false) {
+		limiteFreeLock++;
+	}
+	Xf = Matrice(limiteFreeLock, 1);
+	Xl = Matrice(nbPoint - limiteFreeLock, 1);
+	for (int i = 0; i < vectPoints.size(); i++){
+		if (i < limiteFreeLock) {
+			Xf(i, 0) = vectPoints[i].x;
+		}
+		else {
+			Xl(i - limiteFreeLock, 0) = vectPoints[i].x;
+		}
+	}
+}
+
+void remplissageY(vector<Point> vectPoints, Matrice &Yf, Matrice &Yl) {
+	int limiteFreeLock = 0;
+	int nbPoint = vectPoints.size();
+	while (vectPoints[limiteFreeLock].lock == false) {
+		limiteFreeLock++;
+	}
+	Yf = Matrice(limiteFreeLock, 1);
+	Yl = Matrice(nbPoint - limiteFreeLock, 1);
+	for (int i = 0; i < vectPoints.size(); i++) {
+		if (i < limiteFreeLock) {
+			Yf(i, 0) = vectPoints[i].y;
+		}
+		else {
+			Yl(i - limiteFreeLock, 0) = vectPoints[i].y;
+		}
+	}
+}
+
+void remplissageZ(vector<Point> vectPoints, Matrice &Zf, Matrice &Zl) {
+	int limiteFreeLock = 0;
+	int nbPoint = vectPoints.size();
+	while (vectPoints[limiteFreeLock].lock == false) {
+		limiteFreeLock++;
+	}
+	Zf = Matrice(limiteFreeLock, 1);
+	Zl = Matrice(nbPoint - limiteFreeLock, 1);
+	for (int i = 0; i < vectPoints.size(); i++) {
+		if (i < limiteFreeLock) {
+			Zf(i, 0) = vectPoints[i].z;
+		}
+		else {
+			Zl(i - limiteFreeLock, 0) = vectPoints[i].z;
+		}
+	}
+}
+
+Matrice extractionResultat(Matrice &gauss) {
+	Matrice res = Matrice(gauss.nb_lignes(), 1);
+	for (int l = 0; l < gauss.nb_lignes(); l++){
+		res(l, 0) = gauss(l, gauss.nb_colones() - 1);
+	}
+	return res;
+}
+
+Matrice lissageX(vector<Point> vectPoints, Matrice &Af, Matrice &Al, Matrice &matrice) {
+	Matrice Xf, Xl;
+	remplissageX(vectPoints, Xf, Xl);
+	Matrice vecteurConnu = Af.t()*Al*Xl;
+	Matrice gauss = preparationGauss(matrice, vecteurConnu);
+	gaussJordan(gauss);
+	Matrice vecteurInconnu = extractionResultat(gauss);
+	return vecteurInconnu;
+}
+
+Matrice lissageY(vector<Point> vectPoints, Matrice &Af, Matrice &Al, Matrice &matrice) {
+	Matrice Yf, Yl;
+	remplissageY(vectPoints, Yf, Yl);
+	Matrice vecteurConnu = Af.t()*Al*Yl;
+	Matrice gauss = preparationGauss(matrice, vecteurConnu);
+	gaussJordan(gauss);
+	Matrice vecteurInconnu = extractionResultat(gauss);
+	return vecteurInconnu;
+}
+
+Matrice lissageZ(vector<Point> vectPoints, Matrice &Af, Matrice &Al, Matrice &matrice) {
+	Matrice Zf, Zl;
+	remplissageZ(vectPoints, Zf, Zl);
+	Matrice vecteurConnu = Af.t()*Al*Zl;
+	Matrice gauss = preparationGauss(matrice, vecteurConnu);
+	gaussJordan(gauss);
+	Matrice vecteurInconnu = extractionResultat(gauss);
+	return vecteurInconnu;
+}
+
+void lissage(vector<Point> &vectPoints, Matrice &vecteurX, Matrice &vecteurY, Matrice &vecteurZ) {
+	for (int i = 0; i < vecteurX.nb_lignes(); i++){
+		Point p = Point(vectPoints[i].indice, vecteurX(i,0), vecteurY(i,0), vecteurZ(i,0), vectPoints[i].lock);
+		vectPoints[i] = p;
+	}
+}
+
 int main()
 {
 	cout << "Projet SIG - M2 Informatique\n" << endl;
 	/* Parse du fichier obj */
-	vector<Point> vectPoints = lectureSommets("cube.obj");
-	vector<int> vectLock = lectureVerrouille("cube.obj");
+	vector<Point> vectPoints = lectureSommets("icosa_split1.obj");
+	vector<int> vectLock = lectureVerrouille("icosa_split1.obj");
 	verouillage(vectPoints, vectLock);
-	vector<vector<int> > vectTriangles = lectureTriangles("cube.obj");
+	vector<vector<int> > vectTriangles = lectureTriangles("icosa_split1.obj");
 
 	/* Ajout des voisins à chaque point */
 	voisinagePoint(vectPoints, vectTriangles);
@@ -442,22 +541,30 @@ int main()
 	/* Tri des points pour avoir une numerotation free puis lock */
 	vectPoints = triPoints(vectPoints);
 
-	Matrice A, Af, Al, X, Xf, Xl;
-	remplissageMatrice(vectPoints, A, X);
-	divisionMatrice(vectPoints, A, Af, Al, X, Xf, Xl);
+	/* Remplissage de la matrice A */
+	Matrice A = remplissageMatriceUnique(vectPoints);
+
+	/* Separation de A pour avoir Af et Al */
+	Matrice Af, Al;
+	divisionMatrice(vectPoints, A, Af, Al);
+
+	/* Creation de la matrice matrice */
 	Matrice matrice = Af.t()*Af;
-	Matrice vecteurConnu = Af.t()*Al*Xl;
-	Matrice vecteurCherche;
-	cout << endl;
-	/*affichageMatrice(matrice);
-	cout << endl;
-	affichageMatrice(vecteurConnu);
-	cout << endl;*/
-	Matrice gauss = preparationGauss(matrice, vecteurConnu);
-	affichageMatrice(gauss);
-	cout << endl;
-	gaussJordan(gauss);
-	affichageMatrice(gauss);
+
+	/* Resolution du systeme lineaire pour la dimension x */
+	Matrice vecteurX = lissageX(vectPoints, Af, Al, matrice);
+
+	/* Resolution du systeme lineaire pour la dimension y */
+	Matrice vecteurY = lissageY(vectPoints, Af, Al, matrice);
+
+	/* Resolution du systeme lineaire pour la dimension z */
+	Matrice vecteurZ = lissageZ(vectPoints, Af, Al, matrice);
+
+	lissage(vectPoints, vecteurX, vecteurY, vecteurZ);
+
+	dessinePoint(vectPoints);
+	dessineFilDeFer(vectPoints, vectTriangles);
+
 	system("PAUSE");
 	return 0;
 }
