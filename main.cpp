@@ -246,7 +246,6 @@ vector<Point> triPoints(vector<Point> &vectPoints) {
 	for (int i = 0; i < vectPoints.size(); i++) {
 		if (vectPoints[i].lock == false) {
 			Point p = vectPoints[i];
-			p.indice = indice;
 			vectRes.push_back(p);
 			indice++;
 		}
@@ -254,7 +253,6 @@ vector<Point> triPoints(vector<Point> &vectPoints) {
 	for (int i = 0; i < vectPoints.size(); i++) {
 		if (vectPoints[i].lock == true) {
 			Point p = vectPoints[i];
-			p.indice = indice;
 			vectRes.push_back(p);
 			indice++;
 		}
@@ -317,14 +315,14 @@ Matrice remplissageMatriceUnique(vector<Point> vectPoints) {
 	for (int l = 0; l < nbPoints; l++) {
 		for (int c = 0; c < nbPoints; c++) {
 			if (l == c) {
-				res(l, c) = -1;
+				res(l, c) = -1.0;
 			}
 			else if (vectPoints[l].aPourVoisin(vectPoints[c])) {
 				double rapport = 1.0 / vectPoints[l].nbVoisin();
 				res(l, c) = rapport;
 			}
 			else {
-				res(l, c) = 0;
+				res(l, c) = 0.0;
 			}
 		}
 	}
@@ -381,7 +379,7 @@ Matrice preparationGauss(Matrice &matrice, Matrice &vecteurConnu) {
 				res(l, c) = matrice(l, c);
 			}
 			else {
-				res(l, c) = vecteurConnu(l, 0);
+				res(l, c) = -vecteurConnu(l, 0);
 			}
 		}
 	}
@@ -389,7 +387,10 @@ Matrice preparationGauss(Matrice &matrice, Matrice &vecteurConnu) {
 }
 
 void gaussJordan(Matrice &A) {
-
+	Matrice indice = Matrice(A.nb_lignes(), 1);
+	for (int l = 0; l < A.nb_lignes(); l++){
+		indice(l, 0) = l;
+	}
 	int n = A.nb_lignes();
 	int m = A.nb_colones();
 	int r = -1; // r est l'indice de ligne du dernier pivot trouve
@@ -398,7 +399,7 @@ void gaussJordan(Matrice &A) {
 		double max = A(0, j);
 		int k = 0;
 		for (int i = 0; i < n; i++){
-			if (A(i, j) > max) {
+			if (abs(A(i, j)) > max) {
 				max = A(i, j);
 				k = i;
 			}
@@ -411,10 +412,13 @@ void gaussJordan(Matrice &A) {
 			}
 			if (r != k) {//On place la ligne du pivot en position r
 				for (int c = 0; c < m; c++){
-					double aux = A(r, c);
+					double aux1 = A(r, c);
 					A(r, c) = A(k, c);
-					A(k, c) = aux;
+					A(k, c) = aux1;
 				}
+				int aux2 = indice(r, 0);
+				indice(r, 0) = indice(k, 0);
+				indice(k, 0) = aux2;
 			}
 			for (int i = 0; i < n; i++){
 				if (i != r) {
@@ -425,6 +429,8 @@ void gaussJordan(Matrice &A) {
 			}
 		}
 	}
+	/*affichageMatrice(indice);
+	cout << endl;*/
 }
 
 void remplissageX(vector<Point> vectPoints, Matrice &Xf, Matrice &Xl) {
@@ -493,7 +499,10 @@ Matrice lissageX(vector<Point> vectPoints, Matrice &Af, Matrice &Al, Matrice &ma
 	Matrice Xf, Xl;
 	remplissageX(vectPoints, Xf, Xl);
 	Matrice vecteurConnu = Af.t()*Al*Xl;
+	/*affichageMatrice(vecteurConnu);
+	cout << endl;*/
 	Matrice gauss = preparationGauss(matrice, vecteurConnu);
+	//affichageMatrice(gauss);
 	gaussJordan(gauss);
 	Matrice vecteurInconnu = extractionResultat(gauss);
 	return vecteurInconnu;
@@ -528,12 +537,16 @@ void lissage(vector<Point> &vectPoints, Matrice &vecteurX, Matrice &vecteurY, Ma
 
 int main()
 {
+	/*ofstream cout("output.txt");   
+	ios_base::sync_with_stdio(false);
+	std::cout.rdbuf(cout.rdbuf());*/
+
 	cout << "Projet SIG - M2 Informatique\n" << endl;
 	/* Parse du fichier obj */
-	vector<Point> vectPoints = lectureSommets("icosa_split1.obj");
-	vector<int> vectLock = lectureVerrouille("icosa_split1.obj");
+	vector<Point> vectPoints = lectureSommets("test.obj");
+	vector<int> vectLock = lectureVerrouille("test.obj");
 	verouillage(vectPoints, vectLock);
-	vector<vector<int> > vectTriangles = lectureTriangles("icosa_split1.obj");
+	vector<vector<int> > vectTriangles = lectureTriangles("test.obj");
 
 	/* Ajout des voisins à chaque point */
 	voisinagePoint(vectPoints, vectTriangles);
@@ -543,13 +556,21 @@ int main()
 
 	/* Remplissage de la matrice A */
 	Matrice A = remplissageMatriceUnique(vectPoints);
+	affichageMatrice(A);
+	cout << endl;
 
 	/* Separation de A pour avoir Af et Al */
 	Matrice Af, Al;
 	divisionMatrice(vectPoints, A, Af, Al);
+	/*affichageMatrice(Af);
+	cout << endl;
+	affichageMatrice(Al);
+	cout << endl;*/
 
 	/* Creation de la matrice matrice */
 	Matrice matrice = Af.t()*Af;
+	/*affichageMatrice(matrice);
+	cout << endl;*/
 
 	/* Resolution du systeme lineaire pour la dimension x */
 	Matrice vecteurX = lissageX(vectPoints, Af, Al, matrice);

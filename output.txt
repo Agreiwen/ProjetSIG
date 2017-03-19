@@ -1,0 +1,19 @@
+Projet SIG - M2 Informatique
+
+Lecture des sommets... (8 sommets) Succes
+Lecture des sommets verouilles... (4 sommets verouilles) Succes
+Lecture des triangles... (6 triangles) Succes
+Recuperation des voisins... Succes
+On trie les points verrouilles et les libres... Succes
+Remplissage de la matrices A... Succes
+-1	0.25	0.25	0.25	0	0.25	0	0	
+0.25	-1	0	0.25	0.25	0	0.25	0	
+0.25	0	-1	0.25	0	0.25	0	0.25	
+0.25	0.25	0.25	-1	0	0	0.25	0	
+0	0.5	0	0	-1	0	0.5	0	
+0.333	0	0.333	0	0	-1	0	0.333	
+0	0.333	0	0.333	0.333	0	-1	0	
+0	0	0.5	0	0	0.5	0	-1	
+
+Creation de l'image nuage de point ... Succes
+Creation de l'image fil de fer ... Succes

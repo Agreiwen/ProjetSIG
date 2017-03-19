@@ -20,7 +20,7 @@ void Point::afficher() const
 	cout << "Indice : " << this-> indice << " (" << this->x << "," << this->y << "," << this->z << ")" << " lock : " << this->lock << endl;
 }
 
-bool Point::aPourVoisin(Point p)
+bool Point::aPourVoisin(Point &p)
 {
 	bool trouve = false;
 	for each (Point point in this->voisins) {
@@ -36,12 +36,7 @@ int Point::nbVoisin()
 
 void Point::ajouterVoisin(Point p)
 {
-	//p.afficher();
-	bool trouve = false;
-	for each (Point point in this->voisins){
-		trouve += (point.x == p.x && point.y == p.y && point.z == p.z);
-	}
-	if (!trouve) {
+	if (!this->aPourVoisin(p)) {
 		this->voisins.push_back(p);
 	}
 }
